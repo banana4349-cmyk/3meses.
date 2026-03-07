@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello My Love!</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #8B1A1A;
+    --red-light: #c0392b;
+    --pink: #f8e8e8;
+    --cream: #faf7f2;
+    --text: #333;
+    --border: #8B1A1A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ===== PAGES ===== */
+  .page {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
+  }
+  .page.active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== PAGE 1 - HELLO ===== */
+  #page1 {
+    background: var(--pink);
+    text-align: center;
+    gap: 16px;
+  }
+
+  .cover-img-wrapper {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--red);
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+    background: #f0e0e0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cover-img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .cry-wrapper {
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--red);
+    position: relative;
+    background: #f0e0e0;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto;
+  }
+  .cry-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  #page1 h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 3.5rem;
+    line-height: 1.1;
+  }
+  #page1 h1 span:first-child { color: #555; font-weight: 600; }
+  #page1 h1 span:last-child { color: var(--red); font-weight: 700; }
+
+  #page1 p { color: #777; font-size: 1rem; margin-bottom: 8px; }
+
+  .btn-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+  .btn {
+    padding: 12px 28px;
+    border: 2px solid var(--border);
+    border-radius: 50px;
+    background: transparent;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+  .btn:hover { background: var(--red); color: white; transform: scale(1.05); }
+  .btn.primary { background: var(--red); color: white; }
+  .btn.primary:hover { background: var(--red-light); }
+
+  /* ===== PAGE 2 - NO THANKS ===== */
+  #page2 { background: var(--pink); text-align: center; gap: 20px; }
+  #page2 h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 3rem;
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  /* ===== PAGE 3 - MENU ===== */
+  #page3 { background: var(--cream); text-align: center; gap: 24px; }
+  #page3 h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 2.8rem;
+    color: var(--red);
+    font-weight: 700;
+  }
+  #page3 p { color: #666; font-size: 0.95rem; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .grid-item {
+    border: 2.5px solid var(--border);
+    border-radius: 16px;
+    padding: 30px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .grid-item:hover { background: var(--red); transform: scale(1.05); }
+  .grid-item:hover .grid-icon { filter: brightness(0) invert(1); }
+  .grid-icon { font-size: 42px; transition: filter 0.3s; }
+
+  /* ===== PAGE 4 - PHOTOS ===== */
+  #page4 { background: var(--cream); gap: 24px; align-items: flex-start; }
+
+  .photo-header {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 12px;
+    border-bottom: 2px dashed var(--red);
+  }
+  .photo-header h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 2.5rem;
+    color: var(--red);
+  }
+
+  .photo-collage {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .polaroid {
+    background: white;
+    padding: 8px 8px 30px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease;
+  }
+  .polaroid:hover { transform: scale(1.05) rotate(0deg) !important; }
+  .polaroid:nth-child(1) { transform: rotate(-3deg); }
+  .polaroid:nth-child(2) { transform: rotate(2deg); }
+  .polaroid:nth-child(3) { transform: rotate(-1deg); }
+  .polaroid:nth-child(4) { transform: rotate(3deg); }
+  .polaroid:nth-child(5) { transform: rotate(-2deg); }
+  .polaroid:nth-child(6) { transform: rotate(1deg); }
+
+  .polaroid img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-label {
+    text-align: center;
+    margin-top: 6px;
+    font-family: 'Caveat', cursive;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  /* ===== PAGE 5 - FLOWERS ===== */
+  #page5 { background: var(--cream); gap: 0; }
+
+  .flower-page {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .flower-container {
+    border: 2.5px solid var(--border);
+    border-radius: 16px;
+    padding: 30px 20px;
+    background: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .flower-icon { font-size: 80px; }
+
+  .flower-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .flower-subtitle { color: #777; font-size: 0.9rem; }
+
+  .messages-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .msg-pill {
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    color: var(--text);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ===== PAGE 6 - SONG ===== */
+  #page6 { background: var(--cream); gap: 24px; }
+
+  .song-page { max-width: 600px; width: 100%; }
+
+  .song-header {
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    color: #444;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .video-frame {
+    border: 3px solid #111;
+    border-radius: 16px;
+    overflow: hidden;
+    background: black;
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+  .video-frame video { width: 100%; height: 100%; display: block; }
+
+  .song-title {
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+    color: var(--red);
+    text-align: center;
+    margin-top: 14px;
+    font-weight: 700;
+  }
+
+  .secret-badge {
+    background: var(--red);
+    color: white;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 8px auto;
+    display: block;
+    max-width: 260px;
+  }
+
+  /* ===== PAGE 7 - LETTER ===== */
+  #page7 { background: var(--cream); gap: 0; }
+
+  .letter-page { max-width: 600px; width: 100%; display: flex; flex-direction: column; gap: 16px; }
+
+  .letter-title {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .letter-body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: #444;
+    background: white;
+    padding: 24px;
+    border: 1px solid #e0d0d0;
+    border-radius: 4px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .letter-body p { margin-bottom: 16px; }
+  .letter-body .signature { font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--red); margin-top: 20px; }
+
+  /* ===== SHARED FOOTER ===== */
+  .page-footer {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 2px dashed var(--red);
+    margin-top: 12px;
+  }
+
+  .return-label {
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    color: var(--red);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* ===== MUSIC PLAYER ===== */
+  .music-bar {
+    position: fixed; bottom: 16px; right: 16px;
+    background: white;
+    border: 2px solid var(--red);
+    border-radius: 50px;
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 4px 16px rgba(139,26,26,0.2);
+    z-index: 999;
+  }
+  .music-bar button {
+    background: var(--red); color: white;
+    border: none; border-radius: 50%;
+    width: 32px; height: 32px;
+    cursor: pointer; font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .music-note { display: inline-block; animation: sway 2s ease-in-out infinite; }
+  @keyframes sway {
+    0%,100%{ transform: rotate(-10deg); }
+    50%{ transform: rotate(10deg); }
+  }
+
+  /* ===== HEARTS BACKGROUND ===== */
+  .hearts-bg {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+  }
+  .heart-particle {
+    position: absolute;
+    animation: fall linear infinite;
+    opacity: 0.12;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 0.12; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hearts background -->
+<div class="hearts-bg" id="heartsBg"></div>
+
+<!-- PAGE 1: Hello My Love -->
+<div class="page active" id="page1">
+  <div class="cover-img-wrapper">
+    <!-- ✏️ CAMBIA "foto_portada.jpg" por el nombre exacto de tu imagen -->
+    <img src="portada1.jpg" alt="portada">
+  </div>
+  <h1>
+    <span>Hola<br></span>
+    <span>Para mi niña, feliz 3 meses</span>
+  </h1>
+  <p>¿Quieres ver tu regalo?</p>
+  <div class="btn-row">
+    <button class="btn primary" onclick="goTo('page3')">¡Si!</button>
+    <button class="btn" onclick="goTo('page2')">No, vete a la roña</button>
+  </div>
+</div>
+
+<!-- PAGE 2: No thanks -->
+<div class="page" id="page2">
+  <div class="cry-wrapper">
+    <!-- ✏️ CAMBIA "foto_triste.jpg" por el nombre exacto de tu imagen -->
+    <img src="portada2.jpg" alt="triste">
+  </div>
+  <h2>No sea qlo, te gustará y dirás "Ay voy a llorar"</h2>
+  <button class="btn primary" onclick="goTo('page1')">Otra vez</button>
+</div>
+
+<!-- PAGE 3: Menu -->
+<div class="page" id="page3">
+  <h2>Es para ti</h2>
+  <p>Espero que te guste, te amo</p>
+  <div class="grid">
+    <div class="grid-item" onclick="goTo('page4')">
+      <span class="grid-icon">🖼️</span>
+    </div>
+    <div class="grid-item" onclick="goTo('page5')">
+      <span class="grid-icon">💐</span>
+    </div>
+    <div class="grid-item" onclick="goTo('page6')">
+      <span class="grid-icon">🎵</span>
+    </div>
+    <div class="grid-item" onclick="goTo('page7')">
+      <span class="grid-icon">💌</span>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4: Photos / Captured Memories -->
+<div class="page" id="page4">
+  <div class="photo-header">
+    <h2>Memoria capturada</h2>
+    <p style="font-family:'Caveat',cursive; color:#888; font-size:1rem;"> Fotos de nuestros mejores recuerdos</p>
+  </div>
+
+  <div class="photo-collage">
+    <!-- ✏️ CAMBIA "foto1.jpg" … "foto6.jpg" por tus imágenes -->
+    <div class="polaroid">
+      <img src="1.jpeg" alt="">
+      <div class="photo-label"> Estar a tu lado me hace muy feliz</div>
+    </div>
+    <div class="polaroid">
+      <img src="2.jpeg" alt="">
+      <div class="photo-label"> Amo cada parte tuya </div>
+    </div>
+    <div class="polaroid">
+      <img src="3.jpeg" alt="">
+      <div class="photo-label"> Amo estar a tu lado, conocer y saber de ti</div>
+    </div>
+    <div class="polaroid">
+      <img src="4.jpeg" alt="">
+      <div class="photo-label"> Amo cada actividad contigo, sobre todo las videollamadas</div>
+    </div>
+    <div class="polaroid">
+      <img src="5.jpeg" alt="">
+      <div class="photo-label"> Amo que estes en mi vida, conocer pueblitos juntas </div>
+    </div>
+    <div class="polaroid">
+      <img src="6.jpeg" alt="">
+      <div class="photo-label"> Te amo y quiero tener un vida a tu lado</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="return-label"> No se te olvide que te amo</div>
+    <button class="btn" onclick="goTo('page3')"> Atrás</button>
+  </div>
+</div>
+
+<!-- PAGE 5: Virtual Flowers -->
+<div class="page" id="page5">
+  <div class="flower-page">
+    <div class="flower-container">
+      <div class="flower-icon"><img src="flores.jpg" alt="flores" style="width:160px;height:160px;object-fit:contain;"></div>
+      <div class="flower-title"> Rosas para mi niña </div>
+      <div class="flower-subtitle">Cada petalo es para ti</div>
+
+      <div class="messages-grid">
+        <div class="msg-pill"> Eres una niña muy bonita, amo tu carita y amo verte </div>
+        <div class="msg-pill"> Tienes un corazon enorme y me encanta como eres realmente conmigo </div>
+        <div class="msg-pill"> Me encanta como eres tan ocurrente, tan divertida pero sobre todo que seas solo tú</div>
+        <div class="msg-pill"> Amo tu sensibilidad porque asi expresas lo que sientes de manera real, envidia de la buena amorcito</div>
+        <div class="msg-pill"> Pasar cada un ratito contigo aunque sea por videollada o mensaje es lo unico que mejora mi dia</div>
+        <div class="msg-pill"> Me encanta tu personalidad, diferente y unica</div>
+        <div class="msg-pill"> Contigo estoy aprendiendo lo que verdaderamente significa amar </div>
+        <div class="msg-pill"> Me gustan tus ojos disque heterocromia porque un ojo es cafe clarito</div>
+        <div class="msg-pill"> Extraño ver tu cara y sobre todo llenarte de besos</div>
+        <div class="msg-pill"> Amo tener esta relacion y tener cada momento a tu lado</div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="return-label"> Rosas y snoopy para ti </div>
+      <button class="btn" onclick="goTo('page3')"> Atrás</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 6: Song -->
+<div class="page" id="page6">
+  <div class="song-page">
+    <div class="song-header"> Video para mi niña </div>
+
+    <div class="video-frame">
+      <video controls src="video.mp4"></video>
+    </div>
+
+    <div class="song-title"> Un recordatorio de lo que haria por ti y lo que siento por ti</div>
+    <span class="secret-badge"> Te amo </span>
+
+    <div class="page-footer">
+      <div class="return-label"> Me encantas </div>
+      <button class="btn" onclick="goTo('page3')"> Atrás</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 7: Letter -->
+<div class="page" id="page7">
+  <div class="letter-page">
+    <div class="letter-title">Hola mi amor, feliz 3 meses</div>
+
+    <div class="letter-body">
+      <p>Solo queria decirte que feliz 3 meses bebe, espero que te haya gustado cada detalle ya que simplemente lo hice pensando en ti.
+        Obviamente cada escena de cada pelicula tiene su significado aunque en las algunas peliculas te hayas quedado dormida pero qui esta un ejemplo,
+        tu eres mi media de abejita, obviamente estaria encantada de tener una historia como el de Noah que se que simepre me harias recordar nuestra historia.
+        Y sobre todo la serie que te dedique Cyberpunk, me alegra que te haya gustado mucho y de verdad gracias por seguir a mi lado.
+      </p>
+
+      <p>Espero que podamos seguir cumpliendo mas de 3 meses, que sean años y solo estar a tu lado, cumplir cada sueño que tengamos pero juntas.
+        Gracias por tenerme paciencia ya que realmente estoy aprendiendo amar, sobre todo amarte a ti porque somos bastante diferentes, pero se podria
+        decir que es es lo que mas nos unio, tu tan suave y yo tan caotica.
+        Te amo mucho 
+      </p>
+
+      <div class="signature">
+        Amor de mi vida 🤍
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <div class="return-label"> Mensaje para mi niña preciosa esposa </div>
+      <button class="btn" onclick="goTo('page3')"> Atrás</button>
+    </div>
+  </div>
+</div>
+
+<!-- Music bar — solo ♪ + play/pause -->
+<div class="music-bar" id="musicBar">
+  <span class="music-note">🎵</span>
+  <button onclick="toggleMusic()" id="playBtn">▶</button>
+</div>
+
+<!-- ✏️ CAMBIA "musica.mp3" por el nombre exacto de tu archivo de música -->
+<audio id="bgMusic" src="Stay with me.mp3" loop></audio>
+
+<script>
+  function goTo(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  // Música de fondo — volumen bajo (20%)
+  const audio = document.getElementById('bgMusic');
+  audio.volume = 0.2;
+  let playing = false;
+
+  // Autoplay al primer click del usuario
+  window.addEventListener('click', function startAudio() {
+    if (!playing) {
+      audio.play().then(() => {
+        playing = true;
+        document.getElementById('playBtn').textContent = '⏸';
+      }).catch(() => {});
+    }
+    window.removeEventListener('click', startAudio);
+  }, { once: true });
+
+  function toggleMusic() {
+    if (playing) {
+      audio.pause();
+      document.getElementById('playBtn').textContent = '▶';
+    } else {
+      audio.play();
+      document.getElementById('playBtn').textContent = '⏸';
+    }
+    playing = !playing;
+  }
+
+  // Bajar música cuando el video está sonando, subirla cuando se pausa/termina
+  document.addEventListener('play', function(e) {
+    if (e.target.tagName === 'VIDEO') audio.volume = 0.05;
+  }, true);
+  document.addEventListener('pause', function(e) {
+    if (e.target.tagName === 'VIDEO') audio.volume = 0.2;
+  }, true);
+  document.addEventListener('ended', function(e) {
+    if (e.target.tagName === 'VIDEO') audio.volume = 0.2;
+  }, true);
+
+  // Corazones flotantes de fondo
+  const bg = document.getElementById('heartsBg');
+  const symbols = ['♥', '❤', '🌸', '✿', '♡'];
+  for (let i = 0; i < 20; i++) {
+    const h = document.createElement('span');
+    h.className = 'heart-particle';
+    h.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    h.style.left = Math.random() * 100 + 'vw';
+    h.style.animationDuration = (8 + Math.random() * 12) + 's';
+    h.style.animationDelay = (Math.random() * 10) + 's';
+    h.style.fontSize = (12 + Math.random() * 18) + 'px';
+    bg.appendChild(h);
+  }
+</script>
+</body>
+</html>
